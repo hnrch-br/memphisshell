@@ -52,7 +52,7 @@ Variants {
             color: "transparent"
 
             WlrLayershell.layer: WlrLayer.Top
-            WlrLayershell.keyboardFocus: panel.launcher ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
+            WlrLayershell.keyboardFocus: panel.launcher ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
             exclusionMode: ExclusionMode.Ignore
 
             property real barHeight: panel.screen.height * 0.80

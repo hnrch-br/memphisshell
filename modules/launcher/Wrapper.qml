@@ -11,6 +11,7 @@ Item {
     z: -1
 
     readonly property bool hovered: launcherHover.hovered
+    readonly property string input: ""
 
     required property bool launcher
     required property real barHeight
@@ -46,6 +47,7 @@ Item {
 
             SearchBar {
                 launcher: wrapperRoot.launcher
+                input: wrapperRoot.input
             }
         }
 

@@ -8,6 +8,7 @@ import qs.services
 TextField {
     id: searchField
     required property bool launcher
+    required property string input
 
     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
     Layout.topMargin: 10
@@ -19,6 +20,7 @@ TextField {
         radius: 3
         color: Colors.color7
     }
+
     placeholderText: "search"
     placeholderTextColor: Qt.alpha(Colors.background, 0.8)
     font {
