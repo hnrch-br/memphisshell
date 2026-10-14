@@ -55,7 +55,7 @@ Variants {
             WlrLayershell.keyboardFocus: panel.launcher ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
             exclusionMode: ExclusionMode.Ignore
 
-            property real barHeight: panel.screen.height * 0.86
+            property real barHeight: panel.screen.height * 0.80
 
             mask: Region {
                 Region {
