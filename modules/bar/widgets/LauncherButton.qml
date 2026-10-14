@@ -13,7 +13,8 @@ Button {
         implicitWidth: 32
         implicitHeight: 32
 
-        Rectangle {
+        ClippingRectangle {
+            id: buttonBg
             implicitWidth: launchRoot.down ? 30 : 32
             implicitHeight: launchRoot.down ? 30 : 32
 

@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -41,22 +43,28 @@ Item {
         HoverHandler {
             id: launcherHover
         }
-
         ColumnLayout {
-            anchors.fill: parent
-            anchors.leftMargin: 3
-            anchors.topMargin: 10
-            anchors.bottomMargin: 0
+            anchors {
+                fill: parent
+                leftMargin: 3
+                topMargin: 15
+                bottomMargin: 15
+            }
+            spacing: 2
 
-            SearchBar {
-                launcher: wrapperRoot.launcher
-                input: wrapperRoot.input
-            }
-            Options {
-                launcher: wrapperRoot.launcher
-            }
-            List {
-                launcher: wrapperRoot.launcher
+            Options {}
+
+            ColumnLayout {
+                spacing: 10
+
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+                SearchBar {
+                    launcher: wrapperRoot.launcher
+                    input: wrapperRoot.input
+                }
+                List {
+                    launcher: wrapperRoot.launcher
+                }
             }
         }
 
@@ -78,13 +86,37 @@ Item {
         ]
         transitions: [
             Transition {
-                from: "*"
-                to: "*"
-                NumberAnimation {
-                    target: launcherRect
-                    properties: "implicitWidth"
-                    duration: 200
-                    easing.type: Easing.OutCubic
+                from: "deactivated"
+                to: "activated"
+                SequentialAnimation {
+                    PropertyAction {
+                        target: launcherRect
+                        property: "visible"
+                        value: true
+                    }
+                    NumberAnimation {
+                        target: launcherRect
+                        property: "implicitWidth"
+                        duration: 200
+                        easing.type: Easing.OutCubic
+                    }
+                }
+            },
+            Transition {
+                from: "activated"
+                to: "deactivated"
+                SequentialAnimation {
+                    NumberAnimation {
+                        target: launcherRect
+                        property: "implicitWidth"
+                        duration: 200
+                        easing.type: Easing.OutCubic
+                    }
+                    PropertyAction {
+                        target: launcherRect
+                        property: "visible"
+                        value: false
+                    }
                 }
             }
         ]

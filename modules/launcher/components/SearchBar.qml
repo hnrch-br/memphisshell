@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -9,8 +11,6 @@ TextField {
     id: searchField
     required property bool launcher
     required property string input
-
-    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
 
     background: ClippingRectangle {
         id: searchBox
@@ -46,4 +46,44 @@ TextField {
     leftPadding: 8
 
     onLauncherChanged: searchField.text = ""
+ 
+    cursorDelegate: Rectangle {
+        id: cursorDelegate
+        implicitWidth: 2
+        implicitHeight: 15
+
+        color: Qt.alpha(Colors.background, 0.6)
+
+        Timer {
+            id: blinkTimer
+            interval: 600
+            running: true
+            repeat: true
+            onTriggered: cursorDelegate.visible = !cursorDelegate.visible
+        }
+        
+        Timer {
+            id: idleBlinkTimer
+            interval: 500
+            onTriggered: blinkTimer.start()
+        }
+
+        function resetBlink(): void {
+            blinkTimer.stop();
+            cursorDelegate.visible = true;
+            idleBlinkTimer.restart();
+        }
+
+        Connections {
+            target: searchField
+
+            function onTextChanged() {
+                cursorDelegate.resetBlink();
+            }
+
+            function onCursorPositionChanged() {
+                cursorDelegate.resetBlink();
+            }
+        }
+    }
 }

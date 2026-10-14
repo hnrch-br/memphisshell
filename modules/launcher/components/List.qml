@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -7,9 +9,7 @@ Rectangle {
     id: listBg
     required property bool launcher
     implicitWidth: launcherRect.implicitWidth - 20
-    implicitHeight: launcherRect.implicitHeight - 140
-    
-    Layout.alignment: Qt.AlignHCenter
+    implicitHeight: launcherRect.implicitHeight - 270
 
     color: Qt.darker(Colors.color1, 1.5)
     radius: 3
