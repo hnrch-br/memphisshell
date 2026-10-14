@@ -44,10 +44,19 @@ Item {
 
         ColumnLayout {
             anchors.fill: parent
+            anchors.leftMargin: 3
+            anchors.topMargin: 10
+            anchors.bottomMargin: 0
 
             SearchBar {
                 launcher: wrapperRoot.launcher
                 input: wrapperRoot.input
+            }
+            Options {
+                launcher: wrapperRoot.launcher
+            }
+            List {
+                launcher: wrapperRoot.launcher
             }
         }
 
@@ -63,7 +72,7 @@ Item {
                 name: "deactivated"
                 PropertyChanges {
                     target: launcherRect
-                    implicitWidth: 0
+                    implicitWidth: 3
                 }
             }
         ]
@@ -73,7 +82,7 @@ Item {
                 to: "*"
                 NumberAnimation {
                     target: launcherRect
-                    property: "implicitWidth"
+                    properties: "implicitWidth"
                     duration: 200
                     easing.type: Easing.OutCubic
                 }
