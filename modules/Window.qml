@@ -29,7 +29,7 @@ Variants {
 
             property bool peeking: false
             readonly property bool hovered: barWrapper.hovered || launchWrapper.hovered
-            readonly property bool barVisible: peeking || pinned
+            readonly property bool barVisible: panel.peeking || panel.pinned
 
             onHoveredChanged: {
                 if (panel.hovered) {

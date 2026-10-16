@@ -42,7 +42,7 @@ Button {
         Text {
             text: Time.format("HH\nmm")
             font {
-                family: "Ndot55"
+                family: "Ndot 55"
                 pixelSize: 26
                 styleName: "Regular"
             }

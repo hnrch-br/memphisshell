@@ -13,7 +13,6 @@ Item {
     z: -1
 
     readonly property bool hovered: launcherHover.hovered
-    readonly property string input: ""
 
     required property bool launcher
     required property real barHeight
@@ -43,7 +42,9 @@ Item {
         HoverHandler {
             id: launcherHover
         }
+
         ColumnLayout {
+            visible: wrapperRoot.launcher
             anchors {
                 fill: parent
                 leftMargin: 3
@@ -59,11 +60,12 @@ Item {
 
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
                 SearchBar {
+                    id: search
                     launcher: wrapperRoot.launcher
-                    input: wrapperRoot.input
                 }
                 List {
                     launcher: wrapperRoot.launcher
+                    input: search.input
                 }
             }
         }
@@ -90,7 +92,7 @@ Item {
                 to: "activated"
                 SequentialAnimation {
                     PropertyAction {
-                        target: launcherRect
+                        target: wrapperRoot
                         property: "visible"
                         value: true
                     }
@@ -113,7 +115,7 @@ Item {
                         easing.type: Easing.OutCubic
                     }
                     PropertyAction {
-                        target: launcherRect
+                        target: wrapperRoot
                         property: "visible"
                         value: false
                     }

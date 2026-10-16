@@ -10,7 +10,7 @@ import qs.services
 TextField {
     id: searchField
     required property bool launcher
-    required property string input
+    property string input: searchField.text
 
     background: ClippingRectangle {
         id: searchBox
